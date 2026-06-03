@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Garage Fit Academia — Transforme seu corpo</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --laranja: #E85D04;
+  --laranja2: #F48C06;
+  --preto: #0d0d0d;
+  --preto2: #1a1a1a;
+  --cinza: #888;
+  --branco: #ffffff;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--preto);
+  color: var(--branco);
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(13,13,13,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(232,93,4,0.2);
+}
+.nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--laranja); letter-spacing: 0.05em; }
+.nav-logo span { color: var(--branco); }
+.nav-cta {
+  background: var(--laranja); color: var(--branco);
+  font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.85rem;
+  padding: 0.55rem 1.4rem; border-radius: 4px; text-decoration: none;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  transition: background 0.2s, transform 0.15s;
+}
+.nav-cta:hover { background: var(--laranja2); transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 7rem 2rem 4rem;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(232,93,4,0.18) 0%, rgba(13,13,13,0.97) 55%),
+              repeating-linear-gradient(45deg, rgba(232,93,4,0.03) 0px, rgba(232,93,4,0.03) 1px, transparent 1px, transparent 60px);
+}
+.hero-accent {
+  position: absolute; right: -80px; top: 50%; transform: translateY(-50%);
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(232,93,4,0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 2; max-width: 700px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(232,93,4,0.12); border: 1px solid rgba(232,93,4,0.35);
+  color: var(--laranja); font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.4rem 1rem; border-radius: 2px; margin-bottom: 1.5rem;
+}
+.hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--laranja); border-radius: 50%; }
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  line-height: 0.92; letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+}
+.hero-title .highlight { color: var(--laranja); display: block; }
+.hero-sub {
+  font-size: 1.15rem; color: rgba(255,255,255,0.65); line-height: 1.7;
+  max-width: 520px; margin-bottom: 2.5rem; font-weight: 400;
+}
+.hero-sub strong { color: var(--branco); font-weight: 700; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--laranja); color: var(--branco);
+  font-weight: 700; font-size: 1rem; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 1rem 2rem; border-radius: 4px;
+  text-decoration: none; transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: var(--laranja2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,93,4,0.35); }
+.btn-secondary {
+  background: transparent; color: var(--branco);
+  font-weight: 700; font-size: 1rem; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 1rem 2rem; border-radius: 4px;
+  text-decoration: none; border: 1.5px solid rgba(255,255,255,0.2);
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--laranja); color: var(--laranja); }
+.hero-stats {
+  display: flex; gap: 2.5rem; margin-top: 3.5rem; flex-wrap: wrap;
+}
+.stat { display: flex; flex-direction: column; }
+.stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; color: var(--laranja); line-height: 1; }
+.stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+/* STRIP */
+.strip {
+  background: var(--laranja);
+  padding: 0.9rem 0; overflow: hidden;
+  white-space: nowrap;
+}
+.strip-inner { display: inline-flex; gap: 3rem; animation: strip 18s linear infinite; }
+.strip-item { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.1em; color: var(--preto); }
+.strip-item::before { content: '★ '; }
+@keyframes strip { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* SOBRE */
+.section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+.section-tag {
+  font-size: 0.72rem; font-weight: 700; color: var(--laranja);
+  letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-tag::before { content: ''; width: 28px; height: 2px; background: var(--laranja); }
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 1; letter-spacing: 0.02em; margin-bottom: 1.2rem;
+}
+.section-title span { color: var(--laranja); }
+
+/* DIFERENCIAIS */
+.diferenciais-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5px; background: rgba(232,93,4,0.15);
+  border: 1.5px solid rgba(232,93,4,0.15);
+  border-radius: 8px; overflow: hidden; margin-top: 3rem;
+}
+.dif-card {
+  background: var(--preto2); padding: 2rem 1.8rem;
+  transition: background 0.2s;
+}
+.dif-card:hover { background: #222; }
+.dif-icon { font-size: 2rem; margin-bottom: 1rem; }
+.dif-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.04em; margin-bottom: 0.5rem; color: var(--branco); }
+.dif-desc { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+/* PLANOS */
+.planos-section { background: var(--preto2); padding: 6rem 2rem; }
+.planos-inner { max-width: 1100px; margin: 0 auto; }
+.planos-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem; margin-top: 3rem;
+}
+.plano-card {
+  background: var(--preto); border: 1.5px solid rgba(255,255,255,0.08);
+  border-radius: 8px; padding: 2rem; position: relative;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.plano-card:hover { transform: translateY(-4px); border-color: rgba(232,93,4,0.4); }
+.plano-card.destaque {
+  border-color: var(--laranja);
+  background: linear-gradient(135deg, rgba(232,93,4,0.08), var(--preto));
+}
+.plano-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--laranja); color: var(--branco);
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 14px; border-radius: 20px;
+}
+.plano-nome { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.05em; color: var(--laranja); margin-bottom: 0.5rem; }
+.plano-freq { font-size: 0.82rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem; }
+.plano-preco { display: flex; align-items: baseline; gap: 4px; margin-bottom: 1.5rem; }
+.plano-rs { font-size: 1rem; font-weight: 700; color: var(--laranja); }
+.plano-valor { font-family: 'Bebas Neue', sans-serif; font-size: 3.2rem; color: var(--branco); line-height: 1; }
+.plano-periodo { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+.plano-itens { list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.7rem; }
+.plano-itens li { font-size: 0.88rem; color: rgba(255,255,255,0.65); display: flex; align-items: center; gap: 8px; }
+.plano-itens li::before { content: '✓'; color: var(--laranja); font-weight: 700; flex-shrink: 0; }
+.plano-btn {
+  display: block; text-align: center; text-decoration: none;
+  background: var(--laranja); color: var(--branco);
+  font-weight: 700; font-size: 0.9rem; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 0.85rem; border-radius: 4px;
+  transition: all 0.2s;
+}
+.plano-btn:hover { background: var(--laranja2); }
+.plano-btn.outline {
+  background: transparent; border: 1.5px solid rgba(255,255,255,0.15); color: var(--branco);
+}
+.plano-btn.outline:hover { border-color: var(--laranja); color: var(--laranja); background: transparent; }
+
+/* PILULA */
+.pilula-section {
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, rgba(232,93,4,0.1) 0%, transparent 60%);
+  border-top: 1px solid rgba(232,93,4,0.15);
+  border-bottom: 1px solid rgba(232,93,4,0.15);
+}
+.pilula-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.pilula-preco-box {
+  background: var(--preto2); border: 1.5px solid var(--laranja);
+  border-radius: 8px; padding: 2rem; text-align: center; margin-top: 2rem;
+}
+.pilula-preco-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+.pilula-preco { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--branco); line-height: 1; }
+.pilula-preco span { color: var(--laranja); font-size: 1.8rem; }
+.pilula-chips { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem; }
+.chip {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(232,93,4,0.08); border: 1px solid rgba(232,93,4,0.2);
+  border-radius: 4px; padding: 0.7rem 1rem;
+  font-size: 0.88rem; color: rgba(255,255,255,0.8); font-weight: 600;
+}
+.chip::before { content: '→'; color: var(--laranja); font-weight: 700; }
+
+/* HORARIOS */
+.horarios-section { padding: 5rem 2rem; max-width: 700px; margin: 0 auto; text-align: center; }
+.horario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
+.horario-card {
+  background: var(--preto2); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px; padding: 1.5rem;
+}
+.horario-dia { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--laranja); letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.horario-hora { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+.horario-fechado { color: rgba(255,255,255,0.25); font-style: italic; }
+
+/* CTA FINAL */
+.cta-section {
+  background: var(--laranja);
+  padding: 5rem 2rem; text-align: center;
+}
+.cta-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  color: var(--preto); line-height: 1; letter-spacing: 0.02em; margin-bottom: 1rem;
+}
+.cta-sub { font-size: 1.1rem; color: rgba(0,0,0,0.65); margin-bottom: 2.5rem; font-weight: 600; }
+.btn-dark {
+  background: var(--preto); color: var(--branco);
+  font-weight: 700; font-size: 1.05rem; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 1.1rem 2.5rem; border-radius: 4px;
+  text-decoration: none; display: inline-block;
+  transition: all 0.2s;
+}
+.btn-dark:hover { background: var(--preto2); transform: translateY(-2px); }
+
+/* FOOTER */
+footer {
+  background: #080808; padding: 2rem;
+  text-align: center; border-top: 1px solid rgba(232,93,4,0.15);
+}
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--laranja); margin-bottom: 0.5rem; }
+.footer-info { font-size: 0.8rem; color: rgba(255,255,255,0.3); line-height: 1.8; }
+
+/* FADE IN */
+.fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .pilula-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-stats { gap: 1.5rem; }
+  .horario-grid { grid-template-columns: 1fr; }
+  nav { padding: 1rem; }
+  .nav-logo { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">GARAGE<span>FIT</span></div>
+  <a href="https://wa.me/5532988311470" class="nav-cta">Matricule-se</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content fade-in">
+    <div class="hero-tag">Academia em Visconde do Rio Branco — MG</div>
+    <h1 class="hero-title">
+      TRANSFORME
+      <span class="highlight">SEU CORPO.</span>
+      SUA VIDA.
+    </h1>
+    <p class="hero-sub">
+      A Garage Fit é o lugar onde <strong>resultados reais acontecem.</strong>
+      Treino guiado, estrutura completa e uma comunidade que te empurra todos os dias.
+    </p>
+    <div class="hero-btns">
+      <a href="https://wa.me/5532988311470" class="btn-primary">💬 Chama no WhatsApp</a>
+      <a href="#planos" class="btn-secondary">Ver planos</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">+500</span><span class="stat-label">Alunos transformados</span></div>
+      <div class="stat"><span class="stat-num">5★</span><span class="stat-label">Avaliação no Google</span></div>
+      <div class="stat"><span class="stat-num">+5</span><span class="stat-label">Anos de história</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span class="strip-item">Emagrecimento</span>
+    <span class="strip-item">Ganho de Massa</span>
+    <span class="strip-item">Qualidade de Vida</span>
+    <span class="strip-item">Treino Guiado</span>
+    <span class="strip-item">Avaliação Gratuita</span>
+    <span class="strip-item">Resultado Real</span>
+    <span class="strip-item">Emagrecimento</span>
+    <span class="strip-item">Ganho de Massa</span>
+    <span class="strip-item">Qualidade de Vida</span>
+    <span class="strip-item">Treino Guiado</span>
+    <span class="strip-item">Avaliação Gratuita</span>
+    <span class="strip-item">Resultado Real</span>
+  </div>
+</div>
+
+<!-- DIFERENCIAIS -->
+<div class="section fade-in">
+  <div class="section-tag">Por que a Garage Fit</div>
+  <h2 class="section-title">Mais que uma academia.<br><span>Um lugar de transformação.</span></h2>
+  <div class="diferenciais-grid">
+    <div class="dif-card">
+      <div class="dif-icon">🏋️</div>
+      <div class="dif-title">Equipamentos Completos</div>
+      <div class="dif-desc">Estrutura moderna com tudo que você precisa para treinar com qualidade e segurança.</div>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">👨‍🏫</div>
+      <div class="dif-title">Profissionais Qualificados</div>
+      <div class="dif-desc">Equipe especializada para te orientar do primeiro ao último treino, no seu ritmo.</div>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">📋</div>
+      <div class="dif-title">Treino Personalizado</div>
+      <div class="dif-desc">Prescrição de treino feita para o seu objetivo — emagrecer, ganhar massa ou ter mais saúde.</div>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">📍</div>
+      <div class="dif-title">Localização Central</div>
+      <div class="dif-desc">Av. Dr. Carlos Soares, 433 — Centro. Fácil acesso, estacionamento próximo.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PLANOS -->
+<div class="planos-section" id="planos">
+  <div class="planos-inner fade-in">
+    <div class="section-tag">Planos e Preços</div>
+    <h2 class="section-title">Escolha o plano<br><span>ideal para você</span></h2>
+    <div class="planos-grid">
+      <div class="plano-card">
+        <div class="plano-nome">3x Semana</div>
+        <div class="plano-freq">3 treinos por semana</div>
+        <div class="plano-preco">
+          <span class="plano-rs">R$</span>
+          <span class="plano-valor">89</span>
+          <span class="plano-periodo">,90/mês</span>
+        </div>
+        <ul class="plano-itens">
+          <li>3 treinos por semana</li>
+          <li>Avaliação física</li>
+          <li>Orientação profissional</li>
+        </ul>
+        <a href="https://wa.me/5532988311470" class="plano-btn outline">Quero esse plano</a>
+      </div>
+      <div class="plano-card destaque">
+        <div class="plano-badge">Mais popular</div>
+        <div class="plano-nome">Ilimitado</div>
+        <div class="plano-freq">Acesso livre todos os dias</div>
+        <div class="plano-preco">
+          <span class="plano-rs">R$</span>
+          <span class="plano-valor">99</span>
+          <span class="plano-periodo">,90/mês</span>
+        </div>
+        <ul class="plano-itens">
+          <li>Treinos ilimitados</li>
+          <li>Avaliação física completa</li>
+          <li>Prescrição personalizada</li>
+          <li>Suporte da equipe</li>
+        </ul>
+        <a href="https://wa.me/5532988311470" class="plano-btn">Quero esse plano</a>
+      </div>
+      <div class="plano-card">
+        <div class="plano-nome">VIP Anual</div>
+        <div class="plano-freq">Melhor custo-benefício</div>
+        <div class="plano-preco">
+          <span class="plano-rs">R$</span>
+          <span class="plano-valor">69</span>
+          <span class="plano-periodo">,90/mês</span>
+        </div>
+        <ul class="plano-itens">
+          <li>Acesso ilimitado</li>
+          <li>Avaliação física completa</li>
+          <li>Prescrição personalizada</li>
+          <li>Plano anual — maior economia</li>
+        </ul>
+        <a href="https://wa.me/5532988311470" class="plano-btn outline">Quero esse plano</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PILULA DA JUVENTUDE -->
+<div class="pilula-section fade-in">
+  <div class="pilula-inner">
+    <div>
+      <div class="section-tag">Oferta Especial</div>
+      <h2 class="section-title">Pílula da<br><span>Juventude</span></h2>
+      <p style="color:rgba(255,255,255,0.55); font-size:1rem; line-height:1.7; margin-bottom:1.5rem;">Para mulheres que esqueceram de cuidar de si. 7 dias para se reconectar com seu corpo, perder medidas e se sentir 10 anos mais jovem.</p>
+      <div class="pilula-chips">
+        <div class="chip">7 dias de treino guiado</div>
+        <div class="chip">Avaliação física completa</div>
+        <div class="chip">Prescrição de treino personalizada</div>
+      </div>
+    </div>
+    <div>
+      <div class="pilula-preco-box">
+        <div class="pilula-preco-label">Tudo isso por apenas</div>
+        <div class="pilula-preco"><span>R$</span>49,90</div>
+        <a href="https://wa.me/5532988311470" class="plano-btn" style="margin-top:1.5rem; display:block;">Garantir minha vaga agora!</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HORÁRIOS -->
+<div class="horarios-section fade-in">
+  <div class="section-tag" style="justify-content:center;">Funcionamento</div>
+  <h2 class="section-title">Horários de<br><span>Atendimento</span></h2>
+  <div class="horario-grid">
+    <div class="horario-card">
+      <div class="horario-dia">Segunda — Sexta</div>
+      <div class="horario-hora">05h às 12h<br>14h às 21h</div>
+    </div>
+    <div class="horario-card">
+      <div class="horario-dia">Sábado</div>
+      <div class="horario-hora">08h às 11h</div>
+    </div>
+    <div class="horario-card" style="grid-column: 1 / -1;">
+      <div class="horario-dia">Domingo e Feriados</div>
+      <div class="horario-hora horario-fechado">Fechado</div>
+    </div>
+  </div>
+  <p style="margin-top:1.5rem; font-size:0.85rem; color:rgba(255,255,255,0.35);">📍 Av. Dr. Carlos Soares (Rua Nova), 433 — Centro</p>
+</div>
+
+<!-- CTA FINAL -->
+<div class="cta-section fade-in">
+  <h2 class="cta-title">PRONTO PARA<br>COMEÇAR?</h2>
+  <p class="cta-sub">Venha fazer uma aula experimental gratuita. Sem compromisso.</p>
+  <a href="https://wa.me/5532988311470" class="btn-dark">💬 Chama no WhatsApp agora</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">GARAGE FIT ACADEMIA</div>
+  <div class="footer-info">
+    Av. Dr. Carlos Soares (Rua Nova), 433 — Centro, Visconde do Rio Branco — MG<br>
+    @garagefitacademia • Instagram
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
